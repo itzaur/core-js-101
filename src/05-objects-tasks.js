@@ -6,7 +6,6 @@
  *                                                                                                *
  ************************************************************************************************ */
 
-
 /**
  * Returns the rectangle object with width and height parameters and getArea() method
  *
@@ -20,10 +19,14 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  this.width = width;
+  this.height = height;
 }
 
+Rectangle.prototype.getArea = function rectangleArea() {
+  return this.width * this.height;
+};
 
 /**
  * Returns the JSON representation of specified object
@@ -35,10 +38,9 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  return JSON.stringify(obj);
 }
-
 
 /**
  * Returns the object of specified type from JSON representation
@@ -52,9 +54,21 @@ function getJSON(/* obj */) {
  *
  */
 function fromJSON(/* proto, json */) {
+  // console.log(Object.create(proto));
+  // return JSON.parse(json)
   throw new Error('Not implemented');
 }
 
+// const Circle = function Circle(radius) {
+//   this.radius = radius;
+// };
+
+// Circle.prototype.getCircumference = function getCircumference() {
+//   return 2 * Math.PI * this.radius;
+// };
+
+// console.log(fromJSON(Circle.prototype, '{ "radius":10 }'));
+// //new Circle(10)
 
 /**
  * Css selectors builder
@@ -139,7 +153,6 @@ const cssSelectorBuilder = {
     throw new Error('Not implemented');
   },
 };
-
 
 module.exports = {
   Rectangle,
