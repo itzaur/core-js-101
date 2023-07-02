@@ -53,22 +53,19 @@ function getJSON(obj) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  // console.log(Object.create(proto));
-  // return JSON.parse(json)
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  const object = JSON.parse(json);
+  const values = Object.values(object);
+
+  return new proto.constructor(...values);
 }
 
-// const Circle = function Circle(radius) {
+// function Circle(radius) {
 //   this.radius = radius;
-// };
+// }
 
-// Circle.prototype.getCircumference = function getCircumference() {
-//   return 2 * Math.PI * this.radius;
-// };
-
-// console.log(fromJSON(Circle.prototype, '{ "radius":10 }'));
-// //new Circle(10)
+// const object = fromJSON(Circle.prototype, '{"radius":10}');
+// console.log(object);
 
 /**
  * Css selectors builder
