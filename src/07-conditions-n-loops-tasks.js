@@ -401,16 +401,18 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
-  // const items = pathes.map((el) => el.split('/'));
-  // console.log(items.map((el, i, arr) => arr[i].includes('web')));
-  // console.log(items);
-}
+function getCommonDirectoryPath(pathes) {
+  // throw new Error('Not implemented');
+  const items = pathes.map((el) => el.split('/'));
+  const result = [];
 
-// console.log(
-//   getCommonDirectoryPath(['/web/images/image1.png', '/web/images/image2.png'])
-// );
+  // eslint-disable-next-line consistent-return
+  items[0].forEach((item, i) => {
+    if (items.every((el) => el[i] === item)) return result.push(item);
+  });
+
+  return result.length === 0 ? result.join('/') : `${result.join('/')}/`;
+}
 
 /**
  * Returns the product of two specified matrixes.
